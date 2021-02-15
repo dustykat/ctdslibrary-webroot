@@ -2,10 +2,10 @@ site_name: CECE DS Lib
 nav:
   - Home: index.md
   - About: about.md
-  - Statics : statics.md
-  - Fluids: fluid.md
+  - Engineering Mechanics:
+      - Statics : statics/statics.md
+      - Fluids: fluids/fluids.md
   - Hydrology : hydrology.md
-  - Placeholder : placeholder.md 
   - Developer : developer-notes.md
 
 theme:

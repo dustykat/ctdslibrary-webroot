@@ -40,13 +40,13 @@
 Jet-type pumps are often used for special applications, such as to circulate the flow in basins in which fish are farmed.  The use of a jet-pump reduces mechanical injury to the fish. 
 
 Figures 1 and 2 show the basic concept for this application of a jet pump.  
-![caption](./fluids/planview.png)
+![](planview.png)
 
 |Figure 1|Plan View of a fish race||
 |:---|:---|---:|
 
 
-![](./fluids/elevationview.png)
+![](elevationview.png)
 
 |Figure 2|Elevation detail of a fish race jet pump||
 |:---|:---|---:|
@@ -56,7 +56,7 @@ For this type of basin the jets would have to increase the water surface elevati
 ***Hint*** This problem involves "analysis" to determine the required momentum added by the jets and the total jet area and speed The design should be based on this analysis with an understanding that the total jet area should be small as compared to the total flow area (otherwise the fish could get stuck!).
 
 ## Problem Solving Protocol
-Recall the problem solving protocols in ENGR-1330 [ENGR-1330-S2021-Cleveland](http://54.243.252.9/engr1330content/engr-1330-webroot/1-Lessons/Lesson01/OriginalPowerpoint/ENGR-1330-Lesson1.html)
+Recall the problem solving protocols in ENGR-1330 [https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson02/OriginalPowerpoint/ENGR-1330-Lesson2.html](https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson02/OriginalPowerpoint/ENGR-1330-Lesson2.html)
 
 1. Define the problem (problem statement)
 2. Gather information (identify known and unknown values, and governing equations)
@@ -68,7 +68,7 @@ We can stipulate that Step 1 is already done,
 
 ### Known Values:
 - Geometry
-- Liquid (Water) ( if we need properties we can get them from [Water Properties Database](http://theodore-odroid.ttu.edu/documents/toolbox/fluidmechanics/WaterPropertiesUS/WaterPropertiesUS.html), or something similar
+- Liquid (Water) ( if we need properties we can get them from [http://theodore-odroid.ttu.edu/documents/toolbox/fluidmechanics/WaterPropertiesUS/WaterPropertiesUS.html](http://theodore-odroid.ttu.edu/documents/toolbox/fluidmechanics/WaterPropertiesUS/WaterPropertiesUS.html), or something similar
 
 ### Unknown Values
 - Jet diameter
@@ -81,15 +81,16 @@ These are going to be problem and discipline specific; in this case conservation
 ## Abstraction -- The Control Volume Diagram
 At this point we are mostly trying to develop an algorithm, but are already about to apply **abstraction** when we create a Control-Volume Diagram of the mixing zone depicted in Figure 2.
 
-![](./fluids/cvdiagram.png)
+![](cvdiagram.png)
 
 |Figure 3|Control Volume Diagram of Mixing Zone||
 |:---|:---|---:|
 
 Examining the diagram, we will further abstract by defining variables for our problem:
 
+$$ \begin{gather} \end{gather}$$
 
-\begin{gather} 
+$ \begin{gather} 
 \begin{aligned}
 & F_1 == \text{Pressure force on approach face of mixing zone   } \\
 & F_2 == \text{Pressure force on exit face of mixing zone       } \\
@@ -100,7 +101,7 @@ Examining the diagram, we will further abstract by defining variables for our pr
 & A_2 == \text{Free stream ares of exit face of mixing zone     } \\
 & A_j == \text{Jet stream speed in mixing zone                  } \\
 \end{aligned}
-\end{gather}
+\end{gather}$
 
 ## Decomposition - Continunity Analysis
 
@@ -177,9 +178,7 @@ This equation is our model, it is implicit in $ u_j^2 ~\Delta y$, hence almost r
 
 As a first step, lets try a predictor-correction approach - that is we will simply guess values for cetrain unknowns, and see how close we can make thw two sides of the model agree.
 
-## Algorithm (Initial Steps)
-
-### Rudimentary Guess-Check Approach
+## Guess-Check-Refine Approach
 
 - Verify what we know about the problem:
     1. $u_1 = 1 \text{ft/sec  (given)}$
@@ -190,7 +189,7 @@ As a first step, lets try a predictor-correction approach - that is we will simp
     6. $\Delta y = \text{unknown}$
     7. $g = 32.2 \text{ft/sec/sec  (given)}$
 
-Keep in mind that $\Delta y$ is proportional to the jet area, and the jets are small (unless we want to make our facility into a Bass-o-Matic [youtube-link-bassomatic](https://www.youtube.com/watch?v=c06HorsmhjY)
+Keep in mind that $\Delta y$ is proportional to the jet area, and the jets are small (unless we want to make our facility into a Bass-o-Matic [https://www.youtube.com/watch?v=c06HorsmhjY](https://www.youtube.com/watch?v=c06HorsmhjY)
 
 We will rearrange our model equation above, by dividing by $\Delta y$ 
 
@@ -204,13 +203,14 @@ Now we are ready for computation - if we "pick" $\Delta y$ the only unknown is $
 
 First some preliminary coding, to use different jet speeds for a given $\Delta y$
 
+
 ```python
-dy = 0.1 #delta y 
+dy = 0.1 #delta y
 width = 8.0
 grav = 32.2 # gravitational acceleration constant (US Customary Units)
 u1 = 1.0 #free stream approach
 y1 = 4.0 #approach depth
-y2 = y1 + 6.0*(u1**2)/(2.0*grav) #exit depth as velocity head
+y2 = y1 + 6.0*(u1**2)/(2.0*grav)
 ```
 
 
@@ -260,13 +260,16 @@ So for $\Delta y$ of 0.1 we will need 147 1-inch diameter jets.  The next step i
 
 For refinement, lets improve the precision of the jet speed calculation (i.e. automate the matching of lhs and rhs)
 
-## Algorithm (Refinement) 
+More to come
 
-### Semi-Automated, Quasi-Newton,Approach
+---
+## References
+
+1. list them here, link where possible
+2. list them here, link where possible
+3. list them here, link where possible
+
 
 ```python
 
 ```
-
-
-[Link to the JupyterLab notebook directory for this example](#)
