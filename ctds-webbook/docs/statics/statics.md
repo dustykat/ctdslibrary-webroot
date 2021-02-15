@@ -1,6 +1,21 @@
+```python
+%%html
+<!--Script block to left align Markdown Tables-->
+<style>
+  table {margin-left: 0 !important;}
+</style>
+```
 
 
-## Converting an ordinary Statics problem into a CT exercise 
+<!--Script block to left align Markdown Tables-->
+<style>
+  table {margin-left: 0 !important;}
+</style>
+
+
+
+# Making an ordinary homework problem into a computational thinking exercise 
+## Engineering Mechanics (Statics)
 
 ## Prerequesites (for this example)
 
@@ -35,9 +50,9 @@
 
 A typical static truss analysis problem goes like 
     
->The figure below is a simply supported, statically determinate truss with pin connections (zero moment transfer connections).   Find the forces in each member for the loading shown.
+    "The figure below is a simply supported, statically determinate truss with pin connections (zero moment transfer connections).   Find the forces in each member for the loading shown."
 
-![](static/StaticTrussSketch.jpg)
+![](./StaticTrussSketch.jpg)
 
 This example will leverage linear systems solver(s) to analyze the truss.  The approach uses concepts from statics and computational thinking.
 
@@ -289,12 +304,11 @@ for
 
 The various matrices above are entered into text files named A.txt and B.txt, we can examine the file contents using the 
 
+
 ```python
 # list contents of the A matrix, uses call to OS host (replace `cat` with `type` if on a windoze Machine)
 !(cat A.txt)
 ```
-Now we run the script to obtain:
-
 
     0.707106781	1	0	0	0	0	0	0	0	1	0	0
     0.707106781	0	0	0	0	0	0	0	0	0	1	0
@@ -315,7 +329,6 @@ Now we run the script to obtain:
 # list contents of RHS (AKA b) vector
 !(cat B.txt)
 ```
-Now we run the script to obtain:
 
     0.0
     0.0
@@ -362,7 +375,6 @@ x = numpy.linalg.solve(A, b) # solve for x
 for i in range(0,len(x)):  # rudimentary output
     print(x[i])
 ```
-Now we run the script to obtain:
 
     -1035.2710218174145
     732.0471596998927
@@ -388,8 +400,6 @@ labels =['F1','F2','F3','F4','F5','F6','F7','F8','F9','Ax','Ay','By'] #a list of
 for i in range(0,len(x)):  # rudimentary output
     print(labels[i]," = ",round(x[i],3),' pounds(force)')
 ```
-
-Now we run the script to obtain:
 
     F1  =  -1035.271  pounds(force)
     F2  =  732.047  pounds(force)
@@ -422,6 +432,8 @@ Willems, K. (2017). NumPy Cheat Sheet: Data Analysis in Python. Retrieved Septem
 
 W3resource. (2020). NumPy: Compare two given arrays. Retrieved September 15, 2020, from [https://www.w3resource.com/python-exercises/numpy/python-numpy-exercise-28.php](https://www.w3resource.com/python-exercises/numpy/python-numpy-exercise-28.php)
 
+Sorting [https://www.programiz.com/python-programming/methods/list/sort](https://www.programiz.com/python-programming/methods/list/sort)
+
 Overland, B. (2018). Python Without Fear. Addison-Wesley 
 ISBN 978-0-13-468747-6. 
 
@@ -430,3 +442,27 @@ Media. Kindle Edition.
 
 Precord, C. (2010) wxPython 2.8 Application Development Cookbook Packt Publishing Ltd. Birmingham , B27 6PA, UK 
 ISBN 978-1-849511-78-0.
+
+
+```python
+# Preamble script block to identify host, user, and kernel
+import sys
+! hostname
+! whoami
+print(sys.executable)
+print(sys.version)
+print(sys.version_info)
+```
+
+    atomickitty
+    compthink
+    /opt/jupyterhub/bin/python3
+    3.8.5 (default, Jul 28 2020, 12:59:40) 
+    [GCC 9.3.0]
+    sys.version_info(major=3, minor=8, micro=5, releaselevel='final', serial=0)
+
+
+
+```python
+
+```

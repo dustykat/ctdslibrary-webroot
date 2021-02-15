@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Statics - CECE DS Lib</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">CECE DS Lib</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Home</a>
+                            </li>
+                            <li >
+                                <a href="../../about/">About</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Engineering Mechanics <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li class="active">
+    <a href="./">Statics</a>
+</li>
+                                    
+<li >
+    <a href="../../fluids/fluids/">Fluids</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../../hydrology/">Hydrology</a>
+                            </li>
+                            <li >
+                                <a href="../../developer-notes/">Developer</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../../about/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../fluids/fluids/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#making-an-ordinary-homework-problem-into-a-computational-thinking-exercise">Making an ordinary homework problem into a computational thinking exercise</a></li>
+            <li><a href="#engineering-mechanics-statics">Engineering Mechanics (Statics)</a></li>
+            <li><a href="#prerequesites-for-this-example">Prerequesites (for this example)</a></li>
+            <li><a href="#methodology-for-problem-and-solution">Methodology for Problem (and Solution)</a></li>
+            <li><a href="#problem-solving-protocol">Problem Solving Protocol</a></li>
+            <li><a href="#abstraction-the-free-body-diagram">Abstraction -- The Free-Body Diagram</a></li>
+            <li><a href="#decomposition-node-by-node-analysis">Decomposition -- Node-by-Node Analysis</a></li>
+            <li><a href="#system-integration-assemble-the-network-equations">System Integration - Assemble the Network Equations</a></li>
+            <li><a href="#algorithm-initial-steps">Algorithm (Initial Steps)</a></li>
+            <li><a href="#algorithm-refinement">Algorithm (Refinement)</a></li>
+            <li><a href="#references">References</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<pre><code class="python">%%html
+&lt;!--Script block to left align Markdown Tables--&gt;
+&lt;style&gt;
+  table {margin-left: 0 !important;}
+&lt;/style&gt;
+</code></pre>
+
+<!--Script block to left align Markdown Tables-->
+
+<style>
+  table {margin-left: 0 !important;}
+</style>
+
+<h1 id="making-an-ordinary-homework-problem-into-a-computational-thinking-exercise">Making an ordinary homework problem into a computational thinking exercise</h1>
+<h2 id="engineering-mechanics-statics">Engineering Mechanics (Statics)</h2>
+<h2 id="prerequesites-for-this-example">Prerequesites (for this example)</h2>
+<ul>
+<li>Students will have completed ENGR-1330; CE 2301; and be enrolled in CE 2301</li>
+<li>Students (by virtue of ENGR-1330) will have functioning implementations of JupyterLab</li>
+</ul>
+<h2 id="methodology-for-problem-and-solution">Methodology for Problem (and Solution)</h2>
+<ul>
+<li>
+<p>Present problem verbatim from usual source, i.e. textbook</p>
+</li>
+<li>
+<p>Review main principles of CT :</p>
+<ol>
+<li>Algorithm - A list of steps that you can follow to finish a task</li>
+<li>Decomposition - Break a problem down into smaller pieces</li>
+<li>Abstraction - Pulling out specific differences to make one solution work for multiple problems</li>
+<li>Pattern Matching - Finding similarities between things</li>
+</ol>
+</li>
+<li>
+<p>CT Problem Solving Protocol (from ENGR-1330)</p>
+<ol>
+<li>Explicitly state the problem</li>
+<li>State:</li>
+<li>Input information</li>
+<li>Governing equations or principles, and </li>
+<li>The required output information.</li>
+<li>Work a sample problem by-hand for testing the general solution.</li>
+<li>Develop a general solution method (coding).</li>
+<li>Test the general solution against the by-hand example, then apply to the real problem.</li>
+</ol>
+</li>
+<li>
+<p>Start the problem/solution example; explicitly identify CT principles as problem proceedes.</p>
+</li>
+<li>
+<p>Choose meaningful problems</p>
+</li>
+</ul>
+<p>A typical static truss analysis problem goes like </p>
+<pre><code>"The figure below is a simply supported, statically determinate truss with pin connections (zero moment transfer connections).   Find the forces in each member for the loading shown."
+</code></pre>
+<p><img alt="" src="../StaticTrussSketch.jpg" /></p>
+<p>This example will leverage linear systems solver(s) to analyze the truss.  The approach uses concepts from statics and computational thinking.</p>
+<p>From statics</p>
+<ul>
+<li>
+<p>method of joints (for reactions and internal forcez)</p>
+</li>
+<li>
+<p>direction cosines </p>
+</li>
+</ul>
+<p>From computational thinking</p>
+<ul>
+<li>
+<p>read input file</p>
+</li>
+<li>
+<p>construct linear system <script type="math/tex">\textbf{Ax=b}</script>; solve for <script type="math/tex">\textbf{x}</script>
+</p>
+</li>
+<li>
+<p>report results</p>
+</li>
+</ul>
+<h2 id="problem-solving-protocol">Problem Solving Protocol</h2>
+<p>Recall the problem solving protocols in <a href="http://54.243.252.9/engr1330content/engr-1330-webroot/1-Lessons/Lesson01/OriginalPowerpoint/ENGR-1330-Lesson1.html">ENGR-1330-S2021-Cleveland</a></p>
+<ol>
+<li>Define the problem (problem statement)</li>
+<li>Gather information (identify known and unknown values, and governing equations)</li>
+<li>Generate and evaluate potential solutions</li>
+<li>Refine and implement a solution</li>
+<li>Verify and test the solution.</li>
+</ol>
+<p>We can stipulate that Step 1 is already done, </p>
+<h3 id="known-values">Known Values:</h3>
+<ul>
+<li>Geometry (angles, not necessarily the mamber lengths and (x,y,z) coordinates of the junctions.</li>
+<li>External loads</li>
+</ul>
+<h3 id="unknown-values">Unknown Values</h3>
+<ul>
+<li>Support reactions</li>
+<li>Member forces </li>
+</ul>
+<h3 id="governing-principles">Governing Principles</h3>
+<p>These are going to be problem and discipline specific; in this case two-force memebrs are assumed (stipulated), and the network is statically determinate.  The ability to construct and find solutions to a non-singular linear system is assumed. The solution of linear systems is presented in ENGR-1330 in the following contexts:</p>
+<ul>
+<li>Linear Algebra using Numpy <a href="http://54.243.252.9/engr1330content/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/ENGR-1330-Lesson7-Dev.html">ENGR-1330-S2021-Cleveland</a></li>
+<li>Data Modeling: Regression Approach (Specifically, the later part of the lesson performs regression by solving linear systems entirely using python primatives) <a href="http://54.243.252.9/engr1330content/engr-1330-webroot/1-Lessons/Lesson19/PsuedoLesson/ENGR-1330-Lesson19-Dev.html">ENGR-1330-S2021-Cleveland</a></li>
+<li>Whatever students get in Calculus at this point</li>
+</ul>
+<h2 id="abstraction-the-free-body-diagram">Abstraction -- The Free-Body Diagram</h2>
+<p>Before even contemplating writing/using a program we need to build a mathematical model of the truss and assemble the system of linear equations that result from the model.  A fundamental <strong>abstraction</strong>  is to sketch a free-body-diagram as below and build a node naming convention (a type of <strong>pattern matching</strong>) and force names(<strong>abstraction</strong> with intent to replicate/<strong>automate</strong>).</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/StaticTrussFBD.jpg" /></p>
+<h2 id="decomposition-node-by-node-analysis">Decomposition -- Node-by-Node Analysis</h2>
+<p>Next we will write the force balance for each of the six nodes (<script type="math/tex">N1</script>-<script type="math/tex">N6</script>), which will produce a total of 12 equations in the 12 unknowns (the 9 member forces, and 3 reactions). This is fundamentally a <strong>decomposition</strong> activity.  While specific to this geometry, we could extend the analysis to allow for an external force at all nodes considered, and be able to solve for nearly any loading condition.  </p>
+<p>The figure below is the force balance for node <script type="math/tex">N1</script>, the two force equations (for the horizontal, <script type="math/tex">x</script>, direction and the vertical, <script type="math/tex">y</script>, direction) are listed below the figure.</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/Node1.jpg" /></p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{matrix}
+\sum F_x = 0 = & +F_1cos(45) & + F_2 &  &  &  &  &  &  & + A_x &  &  & & & \\
+\sum F_y = 0 = & +F_1sin(45) &  & &  &  &  &  &  &  &  & + A_y &  &  & \\
+\end{matrix}
+\end{gather}</script>
+</p>
+<p>The equation above is the force balance equation pair for the node.  The <script type="math/tex">x</script> component equation will later be named <script type="math/tex">N1_x</script> to indicate it arises from Node 1, <script type="math/tex">x</script> component equation.   A similar notation convention will also be adopted for the <script type="math/tex">y</script> component equation.  There will be an equation pair for each node.</p>
+<p>Below is a sketch of the force balance for node <script type="math/tex">N2</script>, the two force equations (for the horizontal, <script type="math/tex">x</script>, direction and the vertical, <script type="math/tex">y</script>, direction) are listed below the figure.</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/Node2.jpg" /></p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{matrix}
+\sum F_x = 0 = &  & -F_2 &  &  &  & +F_6 &  &  &  &  &  &  & & \\
+\sum F_y = 0 =  &  &  & +F_3 &  &  &  &  &  &  &  &  &  & & \\
+\end{matrix}
+\end{gather}</script>
+</p>
+<p>Below is a sketch of the force balance for node <script type="math/tex">N3</script>, the two force equations (for the horizontal, <script type="math/tex">x</script>, direction and the vertical, <script type="math/tex">y</script>, direction) are listed below the figure.</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/Node3.jpg" /></p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{matrix}
+\sum F_x = 0 = &  &  &  &  & -F_5cos(30) & -F_6 & & +F_8 &  &  &  &  &  & \\
+\sum F_y = 0 =  &  &  &  &  & F_5sin(30) &  & +F_7 &  &  &  &  &  &  & -P_3\\
+\end{matrix}
+\end{gather}</script>
+</p>
+<p>Above is the force balance equation pair for node <script type="math/tex">N3</script>.</p>
+<p>Below is a sketch of the force balance for node <script type="math/tex">N4</script>, the two force equations (for the horizontal, <script type="math/tex">x</script>, direction and the vertical, <script type="math/tex">y</script>, direction) are listed below the figure.</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/Node4.jpg" /></p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{matrix}
+\sum F_x = 0 = &  &  &  &  &  &  &  & -F_8 & -F_9cos(45) &  &  &  &  & \\
+\sum F_y = 0 =  &  &  &  &  &  &  &  &  & F_9sin(45) &  &  & +B_y  &  & \\
+\end{matrix}
+\end{gather}</script>
+</p>
+<p>Above is the force balance equation pair for node <script type="math/tex">N4</script>.</p>
+<p>Below is a sketch of the force balance for node <script type="math/tex">N5</script>, the two force equations (for the horizontal, <script type="math/tex">x</script>, direction and the vertical, <script type="math/tex">y</script>, direction) are listed below the figure.</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/Node5.jpg" /></p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{matrix}
+\sum F_x = 0 = & -F_1cos(45) &  &   & +F_4 & +F_5cos(30) &  &  &  &  &  &  &  &  & \\
+\sum F_y = 0 =  & -F_1sin(45) &  & -F_3 &   & -F_5sin(30) &  &  &  &  &  &  &  &  & -P_1\\
+\end{matrix}
+\end{gather}</script>
+</p>
+<p>Above is the force balance equation pair for node <script type="math/tex">N5</script>.</p>
+<p>Below is a sketch of the force balance for node <script type="math/tex">N6</script>, the two force equations (for the horizontal, <script type="math/tex">x</script>, direction and the vertical, <script type="math/tex">y</script>, direction) are listed below the figure.</p>
+<p><img alt="" src="https://3.137.111.182/engr-1330-webroot/1-Lessons/Lesson07/OriginalPowerpoint/Node6.jpg" /></p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{matrix}
+\sum F_x = 0 = &  &  &  & -F_4 &  &  &  &  & F_9sin(45) &  &  &  &  & \\
+\sum F_y = 0 =  &  &  &  &  &  &  & -F_7 &  & -F_9cos(45) &  &  &  &  & P_2\\
+\end{matrix}
+\end{gather}</script>
+</p>
+<p>Above is the force balance equation pair for node <script type="math/tex">N6</script>.</p>
+<h2 id="system-integration-assemble-the-network-equations">System Integration - Assemble the Network Equations</h2>
+<p>The CT principle of <strong>system integration</strong> (not listed above but a legitimate component) as part of algorithm development is to gather the equation pairs into a single system of linear equations.   </p>
+<p>We will move the known loads to the right hand side and essentially construct the matrix equation <script type="math/tex">\mathbf{A}\mathbf{x} = \mathbf{b}</script>.   </p>
+<p>The system below is a matrix representation of the equation pairs with the forces moved to the right hand side <script type="math/tex">\mathbf{b} = RHS</script>. </p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\begin{pmatrix}
+~ & F_1 & F_2 & F_3 & F_4 & F_5 & F_6 & F_7 & F_8 & F_9 & A_x & A_y & B_y & | & RHS\\
+\hline
+N1_x & 0.707 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & | & 0\\
+N1_y & 0.707 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & | & 0\\
+N2_x & 0 & -1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & | & 0\\
+N2_y & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & | & 0\\
+N3_x & 0 & 0 & 0 & 0 & -0.866 & -1 & 0 & 1 & 0 & 0 & 0 & 0 & | & 0\\
+N3_y & 0 & 0 & 0 & 0 & 0.5 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & | & P_3\\
+N4_x & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & -0.707 & 0 & 0 & 0 & | & 0\\
+N4_y & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.707 & 0 & 0 & 0 & | & 0\\
+N5_x & -0.707 & 0 & 0 & 1 & 0.866 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & | & 0\\
+N5_y & -0.707 & 0 & -1 & 0 & -0.5 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & | & P_1\\
+N6_x & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0.707 & 0 & 0 & 0 & | & 0\\
+N6_y & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & -0.707 & 0 & 0 &  0 & | & -P_2\\
+\end{pmatrix}
+\end{gather}</script>
+</p>
+<p>In the system, the rows are labeled on the left-most column with their node-related equation name.   </p>
+<p>Thus each row of the matrix corresponds to an equation derived from a node.   </p>
+<p>The columns are labeled with their respective unknown force (except the last column, which represents the right-hand-side of the system of linear equations).<br />
+Thus the coefficient in each column corresponds to a force in each node equation. <br />
+The sign of the coefficient refers to the assumed direction the force acts.   </p>
+<p>In the analysis all the members were assumed to be in tension (except for the reaction forces). <br />
+If a coefficient has a value of zero in a particular row, then that force does no act at the node to which the row corresponds.    </p>
+<p>From this representation the transition to the formal vector-matrix representation is straightforward. </p>
+<p>First the coefficient matrix that is the result of the <strong>decomposition</strong> and node-by-node analysis. </p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\mathbf{A} =
+\begin{pmatrix}
+0.707 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0.707 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & -1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & -0.866 & -1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0.5 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & -0.707 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.707 & 0 & 0 & 0 \\
+-0.707 & 0 & 0 & 1 & 0.866 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+-0.707 & 0 & -1 & 0 & -0.5 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0.707 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & -0.707 & 0 & 0 &  0 \\
+\end{pmatrix}
+\end{gather}</script>
+</p>
+<hr />
+<p>Then the vector (numpy array) of unknowns that are identified by <strong>decomposition</strong> and node-by-node analysis. </p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\mathbf{x} =
+\begin{pmatrix}
+F_1\\
+F_2\\
+F_3\\
+F_4\\
+F_5\\
+F_6\\
+F_7\\
+F_8\\
+F_9\\
+A_x\\
+A_y\\
+B_y\\
+\end{pmatrix}
+\end{gather}</script>
+</p>
+<hr />
+<p>And the right-hand side of forcing values, in this case three non-zero values</p>
+<p>
+<script type="math/tex; mode=display">\begin{gather}
+\mathbf{b} =
+\begin{pmatrix}
+0\\
+0\\
+0\\
+0\\
+0\\
+P_3\\
+0\\
+0\\
+0\\
+P_1\\
+0\\
+-P_2\\
+\end{pmatrix}
+\end{gather}</script>
+</p>
+<hr />
+<h2 id="algorithm-initial-steps">Algorithm (Initial Steps)</h2>
+<p>The supervisory algorithm at this point is straightforward, we want to solve </p>
+<p>
+<script type="math/tex; mode=display">\begin{equation}
+\mathbf{A} \cdot \mathbf{x} =\mathbf{b}
+\end{equation}</script>
+</p>
+<p>for</p>
+<p>
+<script type="math/tex; mode=display">\begin{equation}
+\mathbf{x} 
+\end{equation}</script>
+</p>
+<p>The various matrices above are entered into text files named A.txt and B.txt, we can examine the file contents using the </p>
+<pre><code class="python"># list contents of the A matrix, uses call to OS host (replace `cat` with `type` if on a windoze Machine)
+!(cat A.txt)
+</code></pre>
+
+<pre><code>0.707106781 1   0   0   0   0   0   0   0   1   0   0
+0.707106781 0   0   0   0   0   0   0   0   0   1   0
+0   -1  0   0   0   1   0   0   0   0   0   0
+0   0   1   0   0   0   0   0   0   0   0   0
+0   0   0   0   -0.866  -1  0   1   0   0   0   0
+0   0   0   0   0.5 0   1   0   0   0   0   0
+0   0   0   0   0   0   0   -1  -0.707106781    0   0   0
+0   0   0   0   0   0   0   0   0.707106781 0   0   1
+-0.707106781    0   0   1   0.866   0   0   0   0   0   0   0
+-0.707106781    0   -1  0   -0.5    0   0   0   0   0   0   0
+0   0   0   -1  0   0   0   0   0.707106781 0   0   0
+0   0   0   0   0   0   -1  0   -0.707106781    0   0   0
+</code></pre>
+<pre><code class="python"># list contents of RHS (AKA b) vector
+!(cat B.txt)
+</code></pre>
+
+<pre><code>0.0
+0.0
+0.0
+0.0
+0.0
+500.0
+0.0
+0.0
+0.0
+1000.0
+0.0
+-500.0
+</code></pre>
+<p>Now we use our solver tools, </p>
+<pre><code class="python">import numpy # load the numpy module
+
+amatrix = [] # null list to store matrix reads
+bvector = [] # null list to store matrix reads
+rowNumA = 0  # a counter, needed to parse input files
+colNumA = 0  # a counter, needed to parse input files
+rowNumB = 0  # a counter, needed to parse input files
+
+afile = open(&quot;A.txt&quot;,&quot;r&quot;)  # connect and read file for MATRIX A 
+for line in afile:
+    amatrix.append([float(n) for n in line.strip().split()])
+    rowNumA += 1
+afile.close() # Disconnect the file
+
+afile = open(&quot;B.txt&quot;,&quot;r&quot;)  # connect and read file for VECTOR B 
+for line in afile:
+    bvector.append(float(line))  # vector read different -- just float the line
+    rowNumB += 1
+afile.close() # Disconnect the file
+
+A = numpy.array(amatrix)  # create A
+b = numpy.array(bvector)  # create b
+x = numpy.linalg.solve(A, b) # solve for x
+
+for i in range(0,len(x)):  # rudimentary output
+    print(x[i])
+</code></pre>
+
+<pre><code>-1035.2710218174145
+732.0471596998927
+0.0
+-267.9528403001072
+-535.9056806002143
+732.0471596998927
+767.9528403001071
+267.95284030010714
+-378.94254092877543
+-3.9202487786118276e-14
+732.0471596998927
+267.95284030010714
+</code></pre>
+<h2 id="algorithm-refinement">Algorithm (Refinement)</h2>
+<p>To refine the algorithm, the obvious step is to label the output</p>
+<pre><code class="python">labels =['F1','F2','F3','F4','F5','F6','F7','F8','F9','Ax','Ay','By'] #a list of labels, should automate as needed
+for i in range(0,len(x)):  # rudimentary output
+    print(labels[i],&quot; = &quot;,round(x[i],3),' pounds(force)')
+</code></pre>
+
+<pre><code>F1  =  -1035.271  pounds(force)
+F2  =  732.047  pounds(force)
+F3  =  0.0  pounds(force)
+F4  =  -267.953  pounds(force)
+F5  =  -535.906  pounds(force)
+F6  =  732.047  pounds(force)
+F7  =  767.953  pounds(force)
+F8  =  267.953  pounds(force)
+F9  =  -378.943  pounds(force)
+Ax  =  -0.0  pounds(force)
+Ay  =  732.047  pounds(force)
+By  =  267.953  pounds(force)
+</code></pre>
+<p>Conclusion/Suggested Extensions</p>
+<ul>
+<li>Modify the analysis so forces at nodes are not necessary vertical, also include forces at all nodes (even zero valued) so can analyze any conditions for the truss</li>
+<li>Extend the size several more panels both directions so can approximate internal forces in a homogeneous beam (advanced).</li>
+<li>Mention that material properties (and knowledge of node coordinates, allows solutions for indeterminate cases (this is covered in another class))</li>
+</ul>
+<hr />
+<h2 id="references">References</h2>
+<p>Johnson, J. (2020). Python Numpy Tutorial (with Jupyter and Colab). Retrieved September 15, 2020, from <a href="https://cs231n.github.io/python-numpy-tutorial/">https://cs231n.github.io/python-numpy-tutorial/</a></p>
+<p>Willems, K. (2019). (Tutorial) Python NUMPY Array TUTORIAL. Retrieved September 15, 2020, from <a href="https://www.datacamp.com/community/tutorials/python-numpy-tutorial?utm_source=adwords_ppc">https://www.datacamp.com/community/tutorials/python-numpy-tutorial?utm_source=adwords_ppc</a></p>
+<p>Willems, K. (2017). NumPy Cheat Sheet: Data Analysis in Python. Retrieved September 15, 2020, from <a href="https://www.datacamp.com/community/blog/python-numpy-cheat-sheet">https://www.datacamp.com/community/blog/python-numpy-cheat-sheet</a></p>
+<p>W3resource. (2020). NumPy: Compare two given arrays. Retrieved September 15, 2020, from <a href="https://www.w3resource.com/python-exercises/numpy/python-numpy-exercise-28.php">https://www.w3resource.com/python-exercises/numpy/python-numpy-exercise-28.php</a></p>
+<p>Sorting <a href="https://www.programiz.com/python-programming/methods/list/sort">https://www.programiz.com/python-programming/methods/list/sort</a></p>
+<p>Overland, B. (2018). Python Without Fear. Addison-Wesley 
+ISBN 978-0-13-468747-6. </p>
+<p>Grus, Joel (2015). Data Science from Scratch: First Principles with Python O’Reilly
+Media. Kindle Edition.</p>
+<p>Precord, C. (2010) wxPython 2.8 Application Development Cookbook Packt Publishing Ltd. Birmingham , B27 6PA, UK 
+ISBN 978-1-849511-78-0.</p>
+<pre><code class="python"># Preamble script block to identify host, user, and kernel
+import sys
+! hostname
+! whoami
+print(sys.executable)
+print(sys.version)
+print(sys.version_info)
+</code></pre>
+
+<pre><code>atomickitty
+compthink
+/opt/jupyterhub/bin/python3
+3.8.5 (default, Jul 28 2020, 12:59:40) 
+[GCC 9.3.0]
+sys.version_info(major=3, minor=8, micro=5, releaselevel='final', serial=0)
+</code></pre>
+<pre><code class="python">
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+        <script src="../../mathjaxhelper.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

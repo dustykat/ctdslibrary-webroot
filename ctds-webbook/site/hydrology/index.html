@@ -7,15 +7,15 @@
         
         
         
-        <link rel="shortcut icon" href="/img/favicon.ico">
-        <title>CECE DS Lib</title>
-        <link href="/css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Hydrology - CECE DS Lib</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="/js/jquery-1.10.2.min.js" defer></script>
-        <script src="/js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
@@ -35,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/.">CECE DS Lib</a>
+                    <a class="navbar-brand" href="..">CECE DS Lib</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -43,29 +43,29 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li >
-                                <a href="/.">Home</a>
+                                <a href="..">Home</a>
                             </li>
                             <li >
-                                <a href="/about/">About</a>
+                                <a href="../about/">About</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Engineering Mechanics <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li >
-    <a href="/statics/statics/">Statics</a>
+    <a href="../statics/statics/">Statics</a>
 </li>
                                     
 <li >
-    <a href="/fluids/fluids/">Fluids</a>
+    <a href="../fluids/fluids/">Fluids</a>
 </li>
                                 </ul>
                             </li>
-                            <li >
-                                <a href="/hydrology/">Hydrology</a>
+                            <li class="active">
+                                <a href="./">Hydrology</a>
                             </li>
                             <li >
-                                <a href="/developer-notes/">Developer</a>
+                                <a href="../developer-notes/">Developer</a>
                             </li>
                         </ul>
 
@@ -75,21 +75,40 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li >
+                                <a rel="next" href="../fluids/fluids/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../developer-notes/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#hydrology">Hydrology</a></li>
+            <li><a href="#check-typeset">Check Typeset</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
 
-    <div class="row-fluid">
-      <div id="main-content" class="span12">
-        <h1 id="404-page-not-found" style="text-align: center">404</h1>
-        <p style="text-align: center"><strong>Page not found</strong></p>
-      </div>
-    </div>
-
-
+<h1 id="hydrology">Hydrology</h1>
+<p>This is currently a placeholder file, a suitable example problem would be to deconvolve a rainfall-runoff signal and parameterize a response kernel (unit hydrograph) , provided input precipitation and output runoff.</p>
+<p>The example would contain links to a database with training events, then a few challenge events.</p>
+<p>Entire problem can be done in JupyterLab/Python as per WCOE vision.</p>
+<h3 id="check-typeset">Check Typeset</h3>
+<p>
+<script type="math/tex; mode=display">\begin{equation}
+Q(t) = A \cdot \int_{0}^{t}{P(t-\tau)U(\tau)d \tau}
+\end{equation}</script>
+</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -97,13 +116,13 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "/",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="/js/base.js" defer></script>
+        <script src="../js/base.js" defer></script>
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-        <script src="/mathjaxhelper.js" defer></script>
-        <script src="/search/main.js" defer></script>
+        <script src="../mathjaxhelper.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
