@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Fluid Mechanics - CECE Downstream Examples</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Fluid Mechanics";
+    var mkdocs_page_input_path = "fluid.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> CECE Downstream Examples</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Engineering Mechanics - Statics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Engineering Mechanics - Dynamics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Engineering Mechanics - Solids</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Engineering Materials</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Fluid Mechanics</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#how-to-make-an-ordinary-homework-problem-into-a-computational-thinking-exercise-fluid-mechanics">How to make an ordinary homework problem into a computational thinking exercise - Fluid Mechanics</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#prerequesites-for-this-example">Prerequesites (for this example)</a></li>
+        
+            <li><a class="toctree-l3" href="#methodology-for-problem-and-solution">Methodology for Problem (and Solution)</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#problem-statement-cite-source">Problem Statement (Cite Source)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#problem-solving-protocol">Problem Solving Protocol</a></li>
+        
+            <li><a class="toctree-l3" href="#abstraction-the-control-volume-diagram">Abstraction -- The Control Volume Diagram</a></li>
+        
+            <li><a class="toctree-l3" href="#decomposition-continunity-analysis">Decomposition - Continunity Analysis</a></li>
+        
+            <li><a class="toctree-l3" href="#decomposition-momentum-analysis">Decomposition - Momentum Analysis</a></li>
+        
+            <li><a class="toctree-l3" href="#algorithm-initial-steps">Algorithm (Initial Steps)</a></li>
+        
+            <li><a class="toctree-l3" href="#algorithm-refinement">Algorithm (Refinement)</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Hydrology</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Structural Analysis</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Placeholder</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Placeholder</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Placeholder</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../placeholder/">Placeholder</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">CECE Downstream Examples</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Fluid Mechanics</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="how-to-make-an-ordinary-homework-problem-into-a-computational-thinking-exercise-fluid-mechanics">How to make an ordinary homework problem into a computational thinking exercise - Fluid Mechanics</h1>
+<h2 id="prerequesites-for-this-example">Prerequesites (for this example)</h2>
+<ul>
+<li>Students will have completed ENGR-1330; CE 2301; and be enrolled in CE 3305</li>
+<li>Students (by virtue of ENGR-1330) will have functioning implementations of JupyterLab</li>
+</ul>
+<h2 id="methodology-for-problem-and-solution">Methodology for Problem (and Solution)</h2>
+<ul>
+<li>
+<p>Present problem verbatim from usual source, i.e. textbook</p>
+</li>
+<li>
+<p>Review main principles of CT :</p>
+<ol>
+<li>Algorithm - A list of steps that you can follow to finish a task</li>
+<li>Decomposition - Break a problem down into smaller pieces</li>
+<li>Abstraction - Pulling out specific differences to make one solution work for multiple problems</li>
+<li>Pattern Matching - Finding similarities between things</li>
+</ol>
+</li>
+<li>
+<p>CT Problem Solving Protocol (from ENGR-1330)</p>
+<ol>
+<li>Explicitly state the problem</li>
+<li>State:</li>
+<li>Input information</li>
+<li>Governing equations or principles, and </li>
+<li>The required output information.</li>
+<li>Work a sample problem by-hand for testing the general solution.</li>
+<li>Develop a general solution method (coding).</li>
+<li>Test the general solution against the by-hand example, then apply to the real problem.</li>
+</ol>
+</li>
+<li>
+<p>Start the problem/solution example; explicitly identify CT principles as problem proceedes.</p>
+</li>
+<li>
+<p>Choose meaningful problems</p>
+</li>
+</ul>
+<h1 id="problem-statement-cite-source">Problem Statement (Cite Source)</h1>
+<p>Jet-type pumps are often used for special applications, such as to circulate the flow in basins in which fish are farmed.  The use of a jet-pump reduces mechanical injury to the fish. </p>
+<p>Figures 1 and 2 show the basic concept for this application of a jet pump.<br />
+<img alt="caption" src="../fluids/planview.png" /></p>
+<table>
+<thead>
+<tr>
+<th align="left">Figure 1</th>
+<th align="left">Plan View of a fish race</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../fluids/elevationview.png" /></p>
+<table>
+<thead>
+<tr>
+<th align="left">Figure 2</th>
+<th align="left">Elevation detail of a fish race jet pump</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>For this type of basin the jets would have to increase the water surface elevation by an amount equal to <script type="math/tex">\frac{6V^2}{2g}</script>, where <script type="math/tex">V</script> is the average velocity in the basin ( <script type="math/tex">1~\frac{ft}{s}</script> as shown in the figures).  Propose a basic design for a jet system that would make such a recirculating system work for a channel <script type="math/tex">8</script> ft wide and <script type="math/tex">4</script> ft deep. That is determine the nozzle diameter, speed, and number of nozzles. The design should specify nominal diameters of nozzles using commercially available pipes (1-in., 2-in, ...).  How do the specifications change if the desired water depth is to be <script type="math/tex">6</script> feet deep (to accomodate more fish)  </p>
+<p><strong><em>Hint</em></strong> This problem involves "analysis" to determine the required momentum added by the jets and the total jet area and speed The design should be based on this analysis with an understanding that the total jet area should be small as compared to the total flow area (otherwise the fish could get stuck!).</p>
+<h2 id="problem-solving-protocol">Problem Solving Protocol</h2>
+<p>Recall the problem solving protocols in ENGR-1330 <a href="http://54.243.252.9/engr1330content/engr-1330-webroot/1-Lessons/Lesson01/OriginalPowerpoint/ENGR-1330-Lesson1.html">ENGR-1330-S2021-Cleveland</a></p>
+<ol>
+<li>Define the problem (problem statement)</li>
+<li>Gather information (identify known and unknown values, and governing equations)</li>
+<li>Generate and evaluate potential solutions</li>
+<li>Refine and implement a solution</li>
+<li>Verify and test the solution.</li>
+</ol>
+<p>We can stipulate that Step 1 is already done, </p>
+<h3 id="known-values">Known Values:</h3>
+<ul>
+<li>Geometry</li>
+<li>Liquid (Water) ( if we need properties we can get them from <a href="http://theodore-odroid.ttu.edu/documents/toolbox/fluidmechanics/WaterPropertiesUS/WaterPropertiesUS.html">Water Properties Database</a>, or something similar</li>
+</ul>
+<h3 id="unknown-values">Unknown Values</h3>
+<ul>
+<li>Jet diameter</li>
+<li>Jet speed</li>
+<li>Jet count (number of jets)</li>
+</ul>
+<h3 id="governing-principles">Governing Principles</h3>
+<p>These are going to be problem and discipline specific; in this case conservation of mass and momentum are going to be required.  </p>
+<h2 id="abstraction-the-control-volume-diagram">Abstraction -- The Control Volume Diagram</h2>
+<p>At this point we are mostly trying to develop an algorithm, but are already about to apply <strong>abstraction</strong> when we create a Control-Volume Diagram of the mixing zone depicted in Figure 2.</p>
+<p><img alt="" src="../fluids/cvdiagram.png" /></p>
+<table>
+<thead>
+<tr>
+<th align="left">Figure 3</th>
+<th align="left">Control Volume Diagram of Mixing Zone</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Examining the diagram, we will further abstract by defining variables for our problem:</p>
+<p>
+<script type="math/tex; mode=display">\begin{gather} 
+\begin{aligned}
+& F_1 == \text{Pressure force on approach face of mixing zone   } \\
+& F_2 == \text{Pressure force on exit face of mixing zone       } \\
+& u_1 == \text{Free stream speed on approach face of mixing zone} \\
+& u_2 == \text{Free stream speed on exit face of mixing zone    } \\
+& u_j == \text{Jet stream speed in mixing zone                  } \\
+& A_1 == \text{Free stream area of approach face of mixing zone } \\
+& A_2 == \text{Free stream ares of exit face of mixing zone     } \\
+& A_j == \text{Jet stream speed in mixing zone                  } \\
+\end{aligned}
+\end{gather}</script>
+</p>
+<h2 id="decomposition-continunity-analysis">Decomposition - Continunity Analysis</h2>
+<p>Recall the continunity result from the Reynolds Transport Theorem:</p>
+<p>
+<script type="math/tex">0 = \frac{\partial}{\partial t}\int_{CV}  \rho dV + \int_{CS} \rho(V \cdot dA) </script>
+</p>
+<p>Substitute the geometry from the problem conditions into the flux integral (the volume integral  vanishes because we are considering steady flow) as</p>
+<p>
+<script type="math/tex">0 = \rho u_2 A_2 - \rho u_1 A_1 - \rho u_j A_j </script> where </p>
+<p>
+<script type="math/tex">~~~~~A_1 = W \cdot (y_1 - \Delta y)</script>
+</p>
+<p>
+<script type="math/tex">~~~~~A_2 = W \cdot (y_2)</script>
+</p>
+<p>
+<script type="math/tex">~~~~~A_j = W \cdot (\Delta y)</script>
+</p>
+<p>
+<script type="math/tex">~~~~~W = \text{width of channel} </script>
+</p>
+<p>Notice that if the channel is a constant width, and we stipulate that the liquid is incompressible so that the density is some constant, we can factor these out to obtain</p>
+<p>
+<script type="math/tex">0= u_2  \cdot (y_2) - u_1  \cdot (y_1 - \Delta y) - u_j  \cdot (\Delta y)</script>
+</p>
+<p>Rewrite in terms of <script type="math/tex">u_2</script> as:</p>
+<p>
+<script type="math/tex">u_2  \cdot (y_2) = u_1  \cdot (y_1 - \Delta y) + u_j  \cdot (\Delta y)</script>
+</p>
+<p>Divide by <script type="math/tex">y_2</script> to obtain <script type="math/tex">u_2</script> (which we will substitute into momentum shortly!)</p>
+<p>
+<script type="math/tex">u_2   = \frac{u_1  \cdot (y_1 - \Delta y) + u_j  \cdot (\Delta y)}{y_2}</script>
+</p>
+<h2 id="decomposition-momentum-analysis">Decomposition - Momentum Analysis</h2>
+<p>Recall the momentum result from the Reynolds Transport Theorem:</p>
+<p>
+<script type="math/tex">\sum F_x = \frac{\partial}{\partial t}\int_{CV} V \rho dV + \int_{CS} V\rho(V \cdot dA) </script>
+</p>
+<p>Consider force diffference:</p>
+<p>
+<script type="math/tex">F_1 - F_2 = -u_j~\rho~u_j A_j - u_1 \rho u_1 A_1 + u_2 \rho u_2 A_2</script> where </p>
+<p>
+<script type="math/tex">~~~~~A_1 = W \cdot (y_1 - \Delta y)</script>
+</p>
+<p>
+<script type="math/tex">~~~~~A_2 = W \cdot (y_2)</script>
+</p>
+<p>
+<script type="math/tex">~~~~~A_j = W \cdot (\Delta y)</script>
+</p>
+<p>
+<script type="math/tex">~~~~~W = \text{width of channel} </script>
+</p>
+<p>Stipulate hydrostatic pressure forces at upstream and downstream faces</p>
+<p>
+<script type="math/tex">F_1 = \rho g \frac{y_1}{2} y_1 W</script>
+</p>
+<p>
+<script type="math/tex">F_2 = \rho g \frac{y_2}{2} y_2 W</script>
+</p>
+<p>Now substitute into the momentum balance for the control volume</p>
+<p>
+<script type="math/tex">\rho g W (\frac{y_1^2}{2} - \frac{y_2^2}{2}) = -u_j~\rho~u_j W \cdot (\Delta y) - u_1 \rho u_1 W \cdot (y_1 - \Delta y) + u_2 \rho u_2 W \cdot (y_2)</script>
+</p>
+<p>Notice that if the channel is a constant width, and we stipulate that the liquid is incompressible so that the density is some constant, we can factor these out to obtain</p>
+<p>
+<script type="math/tex"> g  (\frac{y_1^2}{2} - \frac{y_2^2}{2}) = -u_j~u_j  \cdot (\Delta y) - u_1  u_1  \cdot (y_1 - \Delta y) + u_2  u_2  \cdot (y_2)</script>
+</p>
+<p>Now arrange momentum in terms of the jet as</p>
+<p>
+<script type="math/tex"> u_j^2 ~\Delta y = - u_1^2(y_1 - ~ \Delta y) + u_2^2~y_2 - \frac{g}{2}(y_1^2 - y_2^2)</script>
+</p>
+<p>Substitute <script type="math/tex">u_2</script> from continunity</p>
+<p>
+<script type="math/tex"> u_j^2 ~\Delta y = - u_1^2(y_1 - ~ \Delta y) + [\frac{ u_1~(y_1 - ~ \Delta y) - u_j ~\Delta y}{y_2}]^2~y_2 - \frac{g}{2}[y_1^2 - y_2^2]</script>
+</p>
+<p>This equation is our model, it is implicit in <script type="math/tex"> u_j^2 ~\Delta y</script>, hence almost requires a computational approach to find a solution.  </p>
+<p>As a first step, lets try a predictor-correction approach - that is we will simply guess values for cetrain unknowns, and see how close we can make thw two sides of the model agree.</p>
+<h2 id="algorithm-initial-steps">Algorithm (Initial Steps)</h2>
+<h3 id="rudimentary-guess-check-approach">Rudimentary Guess-Check Approach</h3>
+<ul>
+<li>Verify what we know about the problem:<ol>
+<li>
+<script type="math/tex">u_1 = 1 \text{ft/sec  (given)}</script>
+</li>
+<li>
+<script type="math/tex">y_1 = 4 \text{ft (given)}</script>
+</li>
+<li>
+<script type="math/tex">y_2 = 4 + \frac{6(1)^2}{2(32.2)} = 4.0932 \text{ft  (indirectly given)}</script>
+</li>
+<li>
+<script type="math/tex">u_2 = f(u_j,\Delta y) \text{ (model equation)}</script>
+</li>
+<li>
+<script type="math/tex">u_j = \text{unknown}</script>
+</li>
+<li>
+<script type="math/tex">\Delta y = \text{unknown}</script>
+</li>
+<li>
+<script type="math/tex">g = 32.2 \text{ft/sec/sec  (given)}</script>
+</li>
+</ol>
+</li>
+</ul>
+<p>Keep in mind that <script type="math/tex">\Delta y</script> is proportional to the jet area, and the jets are small (unless we want to make our facility into a Bass-o-Matic <a href="https://www.youtube.com/watch?v=c06HorsmhjY">youtube-link-bassomatic</a></p>
+<p>We will rearrange our model equation above, by dividing by <script type="math/tex">\Delta y</script>
+</p>
+<p>
+<script type="math/tex"> u_j^2  = \frac{- u_1^2(y_1 - ~ \Delta y) + [\frac{ u_1~(y_1 - ~ \Delta y) - u_j ~\Delta y}{y_2}]^2~y_2 - \frac{g}{2}[y_1^2 - y_2^2]}{\Delta y}</script>
+</p>
+<p>Then gather all the terms involving <script type="math/tex">u_j</script> onto the left hand side as</p>
+<p>
+<script type="math/tex"> u_j^2 - \frac{u_j^2 \Delta y}{y_2} + \frac{2 u_1 (y_1 - \Delta y)}{y_2} = \frac{- u_1^2(y_1 - ~ \Delta y)}{\Delta y} + \frac{u_1^2 (y_1 - \Delta y)^2}{y_2 \Delta y} - \frac{g}{2 \Delta y}[y_1^2 - y_2^2]</script>
+</p>
+<p>Now we are ready for computation - if we "pick" <script type="math/tex">\Delta y</script> the only unknown is <script type="math/tex">u_j</script>; therefore solvable. If we make a set of guesses, we can compute required jet speed and jet total area.</p>
+<p>First some preliminary coding, to use different jet speeds for a given <script type="math/tex">\Delta y</script>
+</p>
+<pre><code class="python">dy = 0.1 #delta y 
+width = 8.0
+grav = 32.2 # gravitational acceleration constant (US Customary Units)
+u1 = 1.0 #free stream approach
+y1 = 4.0 #approach depth
+y2 = y1 + 6.0*(u1**2)/(2.0*grav) #exit depth as velocity head
+</code></pre>
+
+<pre><code class="python">rhs = -u1*u1*(y1-dy)/dy + (u1*u1*(y1-dy)**2)/(y2*dy) - grav*(y1**2-y2**2)/(2*dy)
+</code></pre>
+
+<pre><code class="python">for i in range(1,200):
+    uj = float(i)*0.1
+    lhs = uj**2*(1-dy/y2) + 2*u1*(y1-dy)*uj/y2
+    if abs(lhs-rhs) &lt;=2: #only print when close
+        print('uj = ',round(uj,2),'LHS = ',round(lhs,2),'RHS = ',round(rhs,2))
+</code></pre>
+
+<pre><code>uj =  10.1 LHS =  118.76 RHS =  119.56
+uj =  10.2 LHS =  120.94 RHS =  119.56
+</code></pre>
+<p>So for a <script type="math/tex">\Delta y</script> of 0.1, the required jet speed is somewhere around 10.1 feet per second.  Now we need to determine the total jet area, and nominal sizes.  </p>
+<pre><code class="python">areajet = dy*width
+import math
+def howManyJets(jetarea,diameter):
+    perjet = 0.25*math.pi*diameter**2
+    if jetarea%perjet == 0:
+        howManyJets = jetarea/perjet
+    elif jetarea%perjet != 0:
+        howManyJets = jetarea//perjet + 1
+    return howManyJets
+
+inches = 1/12
+howManyJets(areajet,inches)
+</code></pre>
+
+<pre><code>147.0
+</code></pre>
+<p>So for <script type="math/tex">\Delta y</script> of 0.1 we will need 147 1-inch diameter jets.  The next step is to refine and generalize our solution so we can explore different speeds - for example a 10 ft/sec jet will probably skin a fish, not healthy for our application.</p>
+<p>For refinement, lets improve the precision of the jet speed calculation (i.e. automate the matching of lhs and rhs)</p>
+<h2 id="algorithm-refinement">Algorithm (Refinement)</h2>
+<h3 id="semi-automated-quasi-newtonapproach">Semi-Automated, Quasi-Newton,Approach</h3>
+<pre><code class="python">
+</code></pre>
+
+<p><a href="#">Link to the JupyterLab notebook directory for this example</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../placeholder/" class="btn btn-neutral float-right" title="Hydrology">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../placeholder/" class="btn btn-neutral" title="Engineering Materials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../placeholder/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../placeholder/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../mathjaxhelper.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
