@@ -6,6 +6,10 @@ nav:
       - Statics : statics/statics.md
       - Fluids: fluids/fluids.md
   - Hydrology : hydrology.md
+  - Social Technological Issues:
+      - Software : software/softwareQA.md
+  - Nature Inspired Design:
+      - bioinspire/nature-inspired-one.md
   - Developer : developer-notes.md
 
 theme:

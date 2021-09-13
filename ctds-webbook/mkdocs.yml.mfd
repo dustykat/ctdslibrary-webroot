@@ -1,0 +1,25 @@
+site_name: CECE DS Lib
+nav:
+  - Home: index.md
+  - About: about.md
+  - Engineering Mechanics:
+      - Statics : statics/statics.md
+      - Fluids: fluids/fluids.md
+  - Hydrology : hydrology.md
+  - Developer : developer-notes.md
+
+theme:
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - python
+
+markdown_extensions:
+  - extra
+  - tables
+  - mdx_math:
+      enable_dollar_delimiter: True
+  - fenced_code
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+  - mathjaxhelper.js
